@@ -1,0 +1,105 @@
+syntax ="proto3";
+
+option go_package="generated/users/";
+
+package users;
+
+service UserService {
+    rpc GetUsers(GetUserReq) returns (GetUserRes);
+    rpc DeleteUsers(Id) returns (Massage);
+    rpc GetByIdUsers(Id) returns (User);
+
+    rpc AddFollower(FollowerReq) returns (Massage);
+    rpc GetFollowers(GetFollowersReq) returns (GetaFollowersRes);
+    rpc DeleteFollower(Id) returns (Massage);
+    rpc GetByIdFollower(Id) returns (Followers);
+
+    rpc AddFollowing(FollowingReq) returns (Massage);
+    rpc GetFollowing(GetFollowingReq) returns (GetaFollowingRes);
+    rpc DeleteFollowing(Id) returns (Massage);
+    rpc GetByIdFollowing(Id) returns (Following);
+
+}
+
+message Id {
+    string id = 1;
+}
+
+message Massage{
+    string message = 1;
+    bool success = 2;
+}
+
+message GetUserReq {
+    int32 Limit = 1;
+    int32 page = 2;
+}
+
+message GetUserRes {
+    repeated User users = 1;
+    int32 page = 2;
+    int32 limit = 3;
+}
+
+message User {
+    string id = 1;
+    string username = 2;
+    string email = 3;
+    string name = 4;
+    string password=5;
+    string lastname=6;
+    string birth_day=7;
+    string image=8;
+    string created_at=9;
+    string updated_at=10;
+}
+
+message FollowerReq {
+    string user_id = 1;
+    string follower_id = 2;
+}
+
+
+message GetFollowersReq {
+    int32 page = 2;
+    int32 limit = 3;
+}
+
+message GetaFollowersRes {
+    repeated Followers followers = 1;
+    int32 page = 2;
+    int32 limit = 3;
+}
+
+message Followers {
+    string id = 1;
+    string user_id = 2;
+    string follower_id = 3;
+    string created_at=4;
+    string updated_at=5;
+}
+
+message FollowingReq{
+    string user_id = 1;
+    string following_id = 2;
+}
+
+message GetFollowingReq {
+    int32 page = 1;
+    int32 limit = 2;
+}
+
+message GetaFollowingRes {
+    repeated Following following = 1;
+    int32 page = 2;
+    int32 limit = 3;
+}
+
+
+message Following {
+    string id = 1;
+    string user_id = 2;
+    string following_id = 3;
+    string created_at=4;
+    string updated_at=5;
+}
