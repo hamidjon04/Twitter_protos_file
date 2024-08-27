@@ -16,6 +16,7 @@ service TwitServiceClient {
 	rpc GetComment(GetCommentReq) returns (GetCommentResp);
 	rpc GetCommentById(Id) returns (Comment);
 	rpc UpdateComment(UpdateCommentReq) returns (UpdateCommentResp);
+    rpc GetFollowerTwit(GetTwitsReq) returns (GetTwitsResp);
 }
 
 message Id{
@@ -30,9 +31,6 @@ message CreateTwitReq{
     string user_id=1;
     string content=2;
     string media=3;
-    string created_at=4;
-    string updated_at=5;
-    string deleted_at=6;
 }
 
 message CreateTwitResp{
@@ -81,9 +79,7 @@ message AddLikeReq{
 }
 
 message AddLikeResp{
-    string id=1;
-    string twit_id=2;
-    string massage=3;
+    string massage=1;
 
 }
 
