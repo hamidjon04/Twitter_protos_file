@@ -1,0 +1,144 @@
+syntax="proto3";
+
+option go_package="generated/twit";
+
+package twit;
+
+service TwitServiceClient {
+	rpc CreateTwit(CreateTwitReq) returns (CreateTwitResp);
+    rpc UpadateTwit(UpadateReq) returns (UpdateTwitResp);
+	rpc DeleteTwit(Id) returns (Message);
+	rpc GetTwits(GetTwitsReq) returns (GetTwitsResp);
+	rpc AddLike(AddLikeReq) returns (AddLikeResp);
+	rpc RemoveLike(DeleleLikeReq) returns (Message);
+	rpc AddComment(AddCommentReq) returns (AddCommentResp);
+	rpc RemoveComment(RemoveCommentReq) returns (Message);
+	rpc GetComment(GetCommentReq) returns (GetCommentResp);
+	rpc GetCommentById(Id) returns (Comment);
+	rpc UpdateComment(UpdateCommentReq) returns (UpdateCommentResp);
+}
+
+message Id{
+    string id=1;
+}
+
+message Message {
+    string message=1;
+}
+
+message CreateTwitReq{
+    string user_id=1;
+    string content=2;
+    string media=3;
+    string created_at=4;
+    string updated_at=5;
+    string deleted_at=6;
+}
+
+message CreateTwitResp{
+    string id=1;
+    string message=2;
+}
+
+message UpadateReq{
+    string id=1;
+    string content=2;
+    string media=3;
+    string user_id=4;
+}
+
+message UpdateTwitResp{
+    string id=1;
+    string user_id=2;
+    string content=3;
+    string media=4;
+    string created_at=5;
+    string updated_at=6;
+}
+
+message GetTwitsReq{
+    string user_id=1;
+}
+
+message GetTwitsResp{
+    repeated Twit twits=1;
+    int32 limit=2;
+    int32 page=3;
+}
+
+message Twit{
+    string id=1;
+    string user_id=2;
+    string content=3;
+    string media=4;
+    string created_at=5;
+    string updated_at=6;
+}
+
+message AddLikeReq{
+    string twit_id=1;
+    string clicker_id=2;
+}
+
+message AddLikeResp{
+    string id=1;
+    string twit_id=2;
+    string massage=3;
+
+}
+
+message DeleleLikeReq{
+    string twit_id=1;
+    string clicker_id=2;
+}
+
+message AddCommentReq{
+    string twit_id=1;
+    string content=2;
+    string writer_id=3;
+    string created_at=4;
+    string updated_at=5;
+    string deleted_at=6;
+}
+
+message AddCommentResp{
+    string id=1;
+    string message=2;
+}
+
+message RemoveCommentReq{
+    string comment_id=1;
+    string writer_id=3;
+}
+
+message GetCommentReq{
+   int32 limit=1;
+   int32 page=2;
+}
+
+message GetCommentResp{
+    repeated Comment comments=1;
+    int32 limit=2;
+    int32 page=3;
+}
+
+message Comment{
+    string id=1;
+    string twit_id=2;
+    string comment=3;
+    string writer_id=4;
+    string created_at=5;
+    string updated_at=6;
+}
+
+
+message UpdateCommentReq{
+    string id=1;
+    string comment=2;
+}
+
+message UpdateCommentResp{
+    string id=1;
+    string comment=2;
+    string updated_at=3;
+}
