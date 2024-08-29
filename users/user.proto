@@ -11,18 +11,23 @@ service UserService {
 
     rpc AddFollower(FollowerReq) returns (Massage);
     rpc GetFollowers(GetFollowersReq) returns (GetaFollowersRes);
-    rpc DeleteFollower(Id) returns (Massage);
-    rpc GetByIdFollower(Id) returns (Followers);
+    rpc DeleteFollower(DeleteFollowerReq) returns (Massage);
+    rpc GetByIdFollower(DeleteFollowerReq) returns (Follow);
 
     rpc AddFollowing(FollowingReq) returns (Massage);
     rpc GetFollowing(GetFollowingReq) returns (GetaFollowingRes);
-    rpc DeleteFollowing(Id) returns (Massage);
-    rpc GetByIdFollowing(Id) returns (Following);
+    rpc DeleteFollowing(DeleteFollowerReq) returns (Massage);
+    rpc GetByIdFollowing(DeleteFollowerReq) returns (Follow);
 
 }
 
 message Id {
     string id = 1;
+}
+
+message DeleteFollowerReq{
+    string user_id = 1;
+    string follower_id = 2;
 }
 
 message Massage{
@@ -31,8 +36,9 @@ message Massage{
 }
 
 message GetUserReq {
-    int32 Limit = 1;
-    int32 page = 2;
+    string id = 1;
+    int32 Limit = 2;
+    int32 page = 3;
 }
 
 message GetUserRes {
@@ -61,6 +67,7 @@ message FollowerReq {
 
 
 message GetFollowersReq {
+    string id = 1;
     int32 page = 2;
     int32 limit = 3;
 }
@@ -85,8 +92,9 @@ message FollowingReq{
 }
 
 message GetFollowingReq {
-    int32 page = 1;
-    int32 limit = 2;
+    string id = 1;
+    int32 page = 2;
+    int32 limit = 3;
 }
 
 message GetaFollowingRes {
@@ -102,4 +110,14 @@ message Following {
     string following_id = 3;
     string created_at=4;
     string updated_at=5;
+}
+
+message Follow{
+    string id = 1;
+    string username = 2;
+    string email = 3;
+    string name = 4;
+    string lastname = 5;
+    string image = 6;
+    string birth_day = 7;
 }
