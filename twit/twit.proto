@@ -11,11 +11,10 @@ service TwitServiceClient {
 	rpc GetTwits(GetTwitsReq) returns (GetTwitsResp);
 	rpc AddLike(AddLikeReq) returns (AddLikeResp);
 	rpc RemoveLike(DeleleLikeReq) returns (Message);
-	rpc AddComment(AddCommentReq) returns (AddCommentResp);
+	
+    rpc AddComment(AddCommentReq) returns (AddCommentResp);
 	rpc RemoveComment(RemoveCommentReq) returns (Message);
 	rpc GetComment(GetCommentReq) returns (GetCommentResp);
-	rpc GetCommentById(Id) returns (Comment);
-	rpc UpdateComment(UpdateCommentReq) returns (UpdateCommentResp);
     rpc GetFollowerTwit(GetTwitsReq) returns (GetTwitsResp);
 }
 
@@ -93,7 +92,6 @@ message AddCommentReq{
     string content=2;
     string writer_id=3;
     string created_at=4;
-    string updated_at=5;
     string deleted_at=6;
 }
 
@@ -103,13 +101,13 @@ message AddCommentResp{
 }
 
 message RemoveCommentReq{
-    string comment_id=1;
+    string twit_id=1;
     string writer_id=3;
 }
 
 message GetCommentReq{
-   int32 limit=1;
-   int32 page=2;
+    string twit_id=1;
+    string writer_id=2;
 }
 
 message GetCommentResp{
@@ -128,13 +126,3 @@ message Comment{
 }
 
 
-message UpdateCommentReq{
-    string id=1;
-    string comment=2;
-}
-
-message UpdateCommentResp{
-    string id=1;
-    string comment=2;
-    string updated_at=3;
-}
