@@ -6,8 +6,8 @@ package twit;
 
 service TwitServiceClient {
 	rpc CreateTwit(CreateTwitReq) returns (CreateTwitResp);
-    rpc UpadateTwit(UpadateReq) returns (UpdateTwitResp);
-	rpc DeleteTwit(Id) returns (Message);
+    rpc UpdateTwit(UpdateReq) returns (UpdateTwitResp);
+	rpc DeleteTwit(DeleteTwitReq) returns (Message);
 	rpc GetTwits(GetTwitsReq) returns (GetTwitsResp);
 	rpc AddLike(AddLikeReq) returns (AddLikeResp);
 	rpc RemoveLike(DeleleLikeReq) returns (Message);
@@ -18,12 +18,13 @@ service TwitServiceClient {
     rpc GetFollowerTwit(GetTwitsReq) returns (GetTwitsResp);
 }
 
-message Id{
-    string id=1;
-}
-
 message Message {
     string message=1;
+}
+
+message CreateTwitReq1{
+    string content = 1;
+    string media = 2;
 }
 
 message CreateTwitReq{
@@ -37,7 +38,13 @@ message CreateTwitResp{
     string message=2;
 }
 
-message UpadateReq{
+message UpdateReq1{
+    string id = 1;
+    string content = 2;
+    string media = 3;
+}
+
+message UpdateReq{
     string id=1;
     string content=2;
     string media=3;
@@ -51,6 +58,11 @@ message UpdateTwitResp{
     string media=4;
     string created_at=5;
     string updated_at=6;
+}
+
+message DeleteTwitReq{
+    string id = 1;
+    string user_id = 2;
 }
 
 message GetTwitsReq{
@@ -72,6 +84,10 @@ message Twit{
     string updated_at=6;
 }
 
+message AddLikeReq1{
+    string twit_id = 1;
+}
+
 message AddLikeReq{
     string twit_id=1;
     string clicker_id=2;
@@ -80,6 +96,10 @@ message AddLikeReq{
 message AddLikeResp{
     string massage=1;
 
+}
+
+message DeleteTwitReq1{
+    string twit_id = 1;
 }
 
 message DeleleLikeReq{

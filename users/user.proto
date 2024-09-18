@@ -9,7 +9,6 @@ service UserService {
     rpc DeleteUsers(Id) returns (Massage);
     rpc GetByIdUsers(Id) returns (User);
 
-    rpc AddFollower(FollowerReq) returns (Massage);
     rpc GetFollowers(GetFollowersReq) returns (GetaFollowersRes);
     rpc DeleteFollower(DeleteFollowerReq) returns (Massage);
     rpc GetByIdFollower(DeleteFollowerReq) returns (Follow);
@@ -84,6 +83,10 @@ message Followers {
     string follower_id = 3;
     string created_at=4;
     string updated_at=5;
+}
+
+message FollowingReq1{
+    string following_id = 1;
 }
 
 message FollowingReq{
