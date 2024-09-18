@@ -9,7 +9,6 @@ service UserService {
     rpc DeleteUsers(Id) returns (Massage);
     rpc GetByIdUsers(Id) returns (User);
 
-    rpc AddFollower(FollowerReq) returns (Massage);
     rpc GetFollowers(GetFollowersReq) returns (GetaFollowersRes);
     rpc DeleteFollower(DeleteFollowerReq) returns (Massage);
     rpc GetByIdFollower(DeleteFollowerReq) returns (Follow);
